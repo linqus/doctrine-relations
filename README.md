@@ -89,6 +89,8 @@ installed and then run:
 ```
 yarn install
 yarn encore dev --watch
+or
+$env:NODE_OPTIONS="--openssl-legacy-provider"; yarn encore dev --watch
 ```
 
 ## Have Ideas, Feedback or an Issue?
