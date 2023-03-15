@@ -16,25 +16,20 @@ class AnswerController extends AbstractController
     /**
      * @Route("/answers/{id}/vote", methods="POST", name="answer_vote")
      */
-    public function answerVote($id, LoggerInterface $logger, Request $request, EntityManagerInterface $entityManager)
+    public function answerVote(Answer $answer, LoggerInterface $logger, Request $request, EntityManagerInterface $entityManager)
     {
         $data = json_decode($request->getContent(), true);
         $direction = $data['direction'] ?? 'up';
 
-        // todo - use id to query the database
-        $answer = $entityManager->getRepository(Answer::class)->find($id);
-        $currentVoteCount = $answer->getVotes();
-        // use real logic here to save this to the database
         if ($direction === 'up') {
             $logger->info('Voting up!');
-            $currentVoteCount = $currentVoteCount + 1;
+            $answer->voteUp();
 
         } else {
             $logger->info('Voting down!');
-            $currentVoteCount = $currentVoteCount - 1;
+            $answer->voteDown();
         }
-        $answer->setVotes($currentVoteCount);
         $entityManager->flush();
-        return $this->json(['votes' => $currentVoteCount]);
+        return $this->json(['votes' => $answer->getVotes()]);
     }
 }

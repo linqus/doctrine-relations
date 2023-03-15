@@ -81,6 +81,16 @@ class Answer
         return $this;
     }
 
+    public function voteUp(): ?int
+    {
+        return $this->votes++;
+    }
+
+    public function voteDown(): ?int
+    {
+        return $this->votes--;
+    }
+
     public function getQuestion(): ?Question
     {
         return $this->question;
