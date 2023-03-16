@@ -161,15 +161,9 @@ class Question
      */
     public function getApprovedAnswers(): Collection
     {
-        $approvedAnswers = new ArrayCollection();
-        foreach ($this->answers as $answer) 
-        {
-            if ($answer->getStatus() == Answer::STATUS_APPROVED) 
-            {
-                $approvedAnswers[] = $answer;
-            }
-        }
-        return $approvedAnswers;
+        return $this->answers->filter(function (Answer $answer) {
+            return $answer->isApproved();
+        });
     }
 
 

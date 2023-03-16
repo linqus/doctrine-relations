@@ -118,6 +118,11 @@ class Answer
         return $this->getContent();
     }
 
+    public function isApproved(): bool
+    {
+        return $this->status === self::STATUS_APPROVED;
+    }
+
     public function getStatus(): ?string
     {
         return $this->status;
