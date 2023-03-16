@@ -49,7 +49,8 @@ final class AnswerFactory extends ModelFactory
             'username' => self::faker()->userName(),
             'votes' => self::faker()->numberBetween(-20,50),
             'question' => QuestionFactory::new()->unpublished(),
-            'createdAt' => self::faker()->dateTimeBetween('-1 month'), // TODO add DATETIME ORM type manually
+            'createdAt' => self::faker()->dateTimeBetween('-1 month'),
+            'status' => Answer::STATUS_APPROVED, 
         ];
     }
 
