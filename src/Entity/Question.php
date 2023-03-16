@@ -2,11 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OrderBy;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -161,9 +160,9 @@ class Question
      */
     public function getApprovedAnswers(): Collection
     {
-        return $this->answers->filter(function (Answer $answer) {
-            return $answer->isApproved();
-        });
+        $criteria = Criteria::create()
+                    ->andWhere(Criteria::expr()->eq('status', Answer::STATUS_APPROVED));
+        return $this->answers->matching($criteria);
     }
 
 
