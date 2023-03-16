@@ -155,6 +155,24 @@ class Question
         return $this->answers;
     }
 
+
+    /**
+     * @return Collection|Answer[]
+     */
+    public function getApprovedAnswers(): Collection
+    {
+        $approvedAnswers = new ArrayCollection();
+        foreach ($this->answers as $answer) 
+        {
+            if ($answer->getStatus() == Answer::STATUS_APPROVED) 
+            {
+                $approvedAnswers[] = $answer;
+            }
+        }
+        return $approvedAnswers;
+    }
+
+
     public function addAnswer(Answer $answer): self
     {
         if (!$this->answers->contains($answer)) {
