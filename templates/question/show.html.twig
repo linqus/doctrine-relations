@@ -62,8 +62,10 @@
                     <div class="col-9">
                         {{ answer.content|parse_markdown }}
                         <p>-- {{ answer.username }}</p>
+
                     </div>
                     <div class="col-2 text-end">
+                        <small>posted {{ answer.createdAt|ago }}</small>
                         <div
                             class="vote-arrows"
                             {{ stimulus_controller('answer-vote', {
