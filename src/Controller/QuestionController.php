@@ -56,6 +56,7 @@ class QuestionController extends AbstractController
 
         return $this->render('question/show.html.twig', [
             'question' => $question,
+            'answers' => $question->getApprovedAnswers()
         ]);
     }
 
