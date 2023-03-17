@@ -49,9 +49,12 @@
         <h2 class="">Answers <span style="font-size:1.2rem;">({{ question.approvedAnswers|length }})</span></h2>
         <button class="btn btn-sm btn-secondary">Submit an Answer</button>
     </div>
-
-    {% include('_anwers.html.twig') %}
-
+    
+    <ul class="list-unstyled">
+        {% for answer in answers %}   
+            {% include('_anwers.html.twig') %}
+        {% endfor %}
+    </ul>
    
 </div>
 {% endblock %}
