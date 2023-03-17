@@ -5,7 +5,11 @@
         <div class="row">
             {% if showQuestion|default(false) %}
             <div class="col-12">
-                <a class="mb-1 link-secondary" href="{{ path('app_question_show', {slug: answer.question.slug}) }}">{{ answer.question.question }}</a>
+                <a class="mb-1 link-secondary" href="{{ 
+                    path('app_question_show', {slug: answer.question.slug}) 
+                }}">
+                    {{ answer.questionText|u.truncate(80,'...') }}
+                </a>
             </div>
             {% endif %}
         </div>
