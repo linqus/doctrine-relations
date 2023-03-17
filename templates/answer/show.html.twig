@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Popular answers{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="my-4">Popular answers:</h2>
+            {{ include('_anwers.html.twig', {
+                showQuestion: true
+            }) }}
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
